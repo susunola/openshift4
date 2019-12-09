@@ -4,7 +4,7 @@ metadata:
   name: node-serving-cert-approver-cronjob
   namespace: serving-cert-approver-workaround
 spec:
-  schedule: '1 * * * *'
+  schedule: '*/1 * * * *'
   concurrencyPolicy: Forbid
   suspend: false
   jobTemplate:
