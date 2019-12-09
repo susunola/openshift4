@@ -62,7 +62,7 @@ spec:
       dockerfilePath: Dockerfile
       env:
       - name: OC_VERSION
-        value: 4.1.13
+        value: 4.2.9
     type: Docker
   successfulBuildsHistoryLimit: 5
   triggers:
