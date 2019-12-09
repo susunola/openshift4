@@ -125,15 +125,7 @@ subjects:
 ---
 apiVersion: v1
 data:
-  approver.sh: "echo \"Logged-in as: `oc whoami`\"\n\ncsrcount=`oc get csr | grep
-    -i Pending |wc -l`\npendingcsr=`oc get csr | grep -i Pending  | awk '{print $1}'`\n\nif
-    [ $csrcount -gt 0 ]\nthen\n  echo \"Listing all Pending CSRs...\"\n  oc get csr
-    | grep Pending\n  echo \"Approving only Node Serving Certificate CSR, please approve
-    node-bootstrapper manually...\"\n\n  for csr in $pendingcsr; do\n    if [[ `oc
-    get csr  -o  custom-columns=:.spec.username $csr` == *\"node-bootstrapper\"* ]];
-    then\n  \t  echo \"Detected $csr as bootstrap request, skipping, please approve
-    manually ...\"\n    else\n\t  oc adm certificate approve $csr\n    fi\n  done
-    \ \nelse\n  echo \"No Node Serving Certificate CSR in pending approval state...\"\nfi\n"
+  approver.sh: "echo \"Logged-in as: `oc whoami`\"\n\ncsrcount=`oc get csr | grep -i Pending |wc -l`\npendingcsr=`oc get csr | grep -i Pending  | awk '{print $1}'`\n\nif [ $csrcount -gt 0 ]\nthen\n  echo \"Listing all Pending CSRs...\"\n  oc get csr | grep Pending\n\n  for csr in $pendingcsr; do\n\t  oc adm certificate approve $csr\n  done  \nelse\n  echo \"No Node Serving Certificate CSR in pending approval state...\"\nfi\n"
 kind: ConfigMap
 metadata:
   name: script
